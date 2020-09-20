@@ -16,7 +16,7 @@ def fetch_top_posts(max_posts):
     posts = [get_item(item_id) for item_id in item_ids]
 
     return posts
-    
+
 def get_item(item_id):
   with requests.get(GET_ITEM_URL.format(item_id), headers=REQUEST_HEADER) as response:
     data = response.json()
@@ -30,6 +30,9 @@ def get_item(item_id):
     item['score'] = data['score']
     item['permalink'] = f'https://news.ycombinator.com/item?id={item["id"]}'
     item['url'] = data.get('url')
+
+    if item['url'] == None:
+      item['url'] = item['permalink']
 
     return item
 
