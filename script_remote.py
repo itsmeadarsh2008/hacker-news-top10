@@ -50,6 +50,7 @@ def send_to_webhook(posts):
 
   payload = {
     'username': 'Hacker News',
+    'avatar_url': 'https://raw.githubusercontent.com/drainvers/hacker-news-top10/master/ycombinator_logo.png',
     'content': f"**Top {MAX_POSTS} Posts from Hacker News ({MONTHS[current_date.month]} {current_date.day}, {current_date.year})**",
     'embeds': [
       {
