@@ -2,7 +2,7 @@ name: Discord Webhook
 
 on:
   schedule:
-    - cron: "30 7 * * *"
+    - cron: "30 0 * * *"
 
 jobs:
   build:
@@ -16,11 +16,6 @@ jobs:
         with:
           python-version: "3.8"
           architecture: "x64"
-
-      - name: Setup timezone
-        uses: zcong1993/setup-timezone@master
-        with:
-          timezone: Asia/Jakarta
 
       - name: Running Script
         env:
