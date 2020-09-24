@@ -1,13 +1,12 @@
 import requests
 import datetime as dt
-import os
 import re
 import html
+import os
 
 # Constants
 WEBHOOK_URL = os.environ["WEBHOOK_URL"]
 MAX_POSTS = 10
-MONTHS = [None, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 TOP_POSTS_URL = 'https://hacker-news.firebaseio.com/v0/topstories.json'
 GET_ITEM_URL = 'https://hacker-news.firebaseio.com/v0/item/{}.json'
 REQUEST_HEADER = {"User-Agent": "Hacker News Top 10 Bot v1.0"}
@@ -86,12 +85,12 @@ def send_to_webhook(posts):
   posts : list
     A list of posts.
   """
-  current_date = dt.date.today()
+  current_date = dt.date.today().strftime('%B %d, %Y')
 
   payload = {
     'username': 'Hacker News',
     'avatar_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Y_Combinator_logo.svg/240px-Y_Combinator_logo.svg.png',
-    'content': f"**Top {MAX_POSTS} Posts from Hacker News ({MONTHS[current_date.month]} {current_date.day}, {current_date.year})**",
+    'content': f"**Top {MAX_POSTS} Posts from Hacker News ({current_date})**",
     'embeds': [
       {
         'color': '16737792',
